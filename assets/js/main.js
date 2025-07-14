@@ -230,3 +230,43 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
+AOS.init();
+
+// 'fade-up' 애니메이션이 뷰포트에 진입할 때 발생하는 이벤트
+document.addEventListener('aos:in', ({ detail }) => {
+  // detail 에는 애니메이션이 적용된 DOM 요소가 들어옴
+  if (detail.classList.contains('counter')) {
+    startCount(detail);
+  }
+});
+
+/**
+ * 요소의 현재 텍스트(숫자)를 0부터 data-target 값까지 duration 동안 증가시킵니다.
+ * @param {HTMLElement} el 
+ */
+function startCount(el) {
+  const target = +el.getAttribute('data-target');
+  const duration = +el.getAttribute('data-aos-duration') || 1000; // ms
+  const start = 0;
+  const startTime = performance.now();
+
+  function update(now) {
+    const elapsed = now - startTime;
+    // 진행 비율 (0~1)
+    const progress = Math.min(elapsed / duration, 1);
+    // 이펙트: easeOutQuad
+    const ease = 1 - Math.pow(1 - progress, 2);
+    const current = Math.floor(ease * (target - start) + start);
+
+    el.textContent = current.toLocaleString(); // 천 단위 콤마
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      el.textContent = target.toLocaleString();
+    }
+  }
+
+  requestAnimationFrame(update);
+}
