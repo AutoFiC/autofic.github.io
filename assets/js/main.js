@@ -233,40 +233,58 @@
 
 AOS.init();
 
-// 'fade-up' 애니메이션이 뷰포트에 진입할 때 발생하는 이벤트
-document.addEventListener('aos:in', ({ detail }) => {
-  // detail 에는 애니메이션이 적용된 DOM 요소가 들어옴
-  if (detail.classList.contains('counter')) {
-    startCount(detail);
-  }
-});
+    // log.json에서 값 받아와서 동적으로 갱신
+    async function updateStats() {
+      try {
+        const response = await fetch('https://autofic-core-kmw6.onrender.com/log.json');
+        const data = await response.json();
 
-/**
- * 요소의 현재 텍스트(숫자)를 0부터 data-target 값까지 duration 동안 증가시킵니다.
- * @param {HTMLElement} el 
- */
-function startCount(el) {
-  const target = +el.getAttribute('data-target');
-  const duration = +el.getAttribute('data-aos-duration') || 1000; // ms
-  const start = 0;
-  const startTime = performance.now();
+        // 합계 계산
+        const totalVulns = data.repos.reduce((sum, repo) => sum + (repo.vulnerabilities || 0), 0);
+        const totalPRs = data.prs.length;
+        const totalRepos = data.repos.length;
 
-  function update(now) {
-    const elapsed = now - startTime;
-    // 진행 비율 (0~1)
-    const progress = Math.min(elapsed / duration, 1);
-    // 이펙트: easeOutQuad
-    const ease = 1 - Math.pow(1 - progress, 2);
-    const current = Math.floor(ease * (target - start) + start);
+        // 상세 설명 텍스트용 숫자 갱신
+        document.getElementById('vuln-total').textContent = totalVulns.toLocaleString() + "개";
+        document.getElementById('pr-total').textContent = totalPRs.toLocaleString() + "건";
+        document.getElementById('repo-total').textContent = totalRepos.toLocaleString() + "개";
 
-    el.textContent = current.toLocaleString(); // 천 단위 콤마
-
-    if (progress < 1) {
-      requestAnimationFrame(update);
-    } else {
-      el.textContent = target.toLocaleString();
+        // 하단 카운터용 data-target도 갱신
+        const counters = document.querySelectorAll('.counter');
+        if (counters[0]) counters[0].setAttribute('data-target', totalVulns);
+        if (counters[1]) counters[1].setAttribute('data-target', totalPRs);
+        if (counters[2]) counters[2].setAttribute('data-target', totalRepos);
+      } catch (err) {
+        console.error('통계 정보 불러오기 실패:', err);
+      }
     }
-  }
+    updateStats();
 
-  requestAnimationFrame(update);
-}
+    // 카운터 애니메이션 로직
+    document.addEventListener('aos:in', ({ detail }) => {
+      if (detail.classList.contains('counter')) {
+        startCount(detail);
+      }
+    });
+
+    function startCount(el) {
+      const target = +el.getAttribute('data-target');
+      const duration = +el.getAttribute('data-aos-duration') || 1000;
+      const start = 0;
+      const startTime = performance.now();
+
+      function update(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 2);
+        const current = Math.floor(ease * (target - start) + start);
+        el.textContent = current.toLocaleString();
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = target.toLocaleString();
+        }
+      }
+      requestAnimationFrame(update);
+    }

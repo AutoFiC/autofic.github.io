@@ -285,51 +285,61 @@
     </section>  
 
     <section id="summary" class="container my-5 py-5">
-      <div class="row align-items-center">
-        <!-- 왼쪽: 타이틀 -->
-        <div class="col-lg-6 mb-4 mb-lg-0">
-          <h2 class="fw-bold display-5 mb-2" style="color:#222;">숫자로 보는<br><span style="font-weight:900;">AutoFiC</span></h2>
-          <p class="lead text-secondary">AI 기반 오픈소스 취약점 탐지 및 자동 PR 솔루션</p>
-        </div>
-        <!-- 오른쪽: 상세 설명 -->
-        <div class="col-lg-6">
-          <div class="mb-4">
-            <h4 class="fw-bold mb-1" style="color:#263238;">총 탐지된 취약점</h4>
-            <p class="text-secondary mb-0">AI 기반의 자동화된 분석을 통해 총 <span class="fw-bold text-primary">1,250개</span>의 취약점을 발견했습니다.</p>
-          </div>
-          <div class="mb-4">
-            <h4 class="fw-bold mb-1" style="color:#263238;">자동 제출한 PR 수</h4>
-            <p class="text-secondary mb-0">LLM이 직접 코드를 수정하여 <span class="fw-bold text-primary">530건</span>의 Pull Request를 자동으로 생성했습니다.</p>
-          </div>
-          <div>
-            <h4 class="fw-bold mb-1" style="color:#263238;">분석 완료한 레포지토리</h4>
-            <p class="text-secondary mb-0">총 <span class="fw-bold text-primary">170개</span>의 GitHub 오픈소스 레포지토리를 대상으로 취약점 분석 및 개선 작업을 수행했습니다.</p>
-          </div>
-        </div>
-      </div>
+        <div class="container py-5">
 
-      <!-- 숫자 강조: 하단 통계 -->
-      <div class="row mt-5 text-center">
-        <div class="col-md-4 mb-3 mb-md-0">
-          <div class="fs-1 fw-bold text-primary">
-            <span class="counter" data-aos="fade-up" data-aos-duration="5000" data-target="1250">0</span>개
+          <div class="row align-items-center">
+            <!-- 왼쪽: 타이틀 -->
+            <div class="col-lg-6 mb-4 mb-lg-0">
+              <h2 class="fw-bold display-5 mb-2" style="color:#222;">숫자로 보는<br><span style="font-weight:900;">AutoFiC</span></h2>
+              <p class="lead text-secondary">AI 기반 오픈소스 취약점 탐지 및 자동 PR 솔루션</p>
+            </div>
+            <!-- 오른쪽: 상세 설명 -->
+            <div class="col-lg-6">
+              <div class="mb-4">
+                <h4 class="fw-bold mb-1" style="color:#263238;">총 탐지된 취약점</h4>
+                <p class="text-secondary mb-0">
+                  AI 기반의 자동화된 분석을 통해 총
+                  <span id="vuln-total" class="fw-bold text-primary">1,250개</span>의 취약점을 발견했습니다.
+                </p>
+              </div>
+              <div class="mb-4">
+                <h4 class="fw-bold mb-1" style="color:#263238;">자동 제출한 PR 수</h4>
+                <p class="text-secondary mb-0">
+                  LLM이 직접 코드를 수정하여
+                  <span id="pr-total" class="fw-bold text-primary">530건</span>의 Pull Request를 자동으로 생성했습니다.
+                </p>
+              </div>
+              <div>
+                <h4 class="fw-bold mb-1" style="color:#263238;">분석 완료한 레포지토리</h4>
+                <p class="text-secondary mb-0">
+                  총 <span id="repo-total" class="fw-bold text-primary">170개</span>의 GitHub 오픈소스 레포지토리를 대상으로 취약점 분석 및 개선 작업을 수행했습니다.
+                </p>
+              </div>
+            </div>
           </div>
-          <div class="fw-semibold text-secondary">탐지한 총 취약점</div>
-        </div>
-        <div class="col-md-4 mb-3 mb-md-0">
-          <div class="fs-1 fw-bold text-primary">
-            <span class="counter" data-aos="fade-up" data-aos-duration="5000" data-target="530">0</span>건
-          </div>
-          <div class="fw-semibold text-secondary">자동 제출한 PR 수</div>
-        </div>
-        <div class="col-md-4">
-          <div class="fs-1 fw-bold text-primary">
-            <span class="counter" data-aos="fade-up" data-aos-duration="5000" data-target="170">0</span>개
-          </div>
-          <div class="fw-semibold text-secondary">분석 완료한 레포지토리</div>
-        </div>
-      </div>
 
+          <!-- 숫자 강조: 하단 통계 -->
+          <div class="row mt-5 text-center">
+            <div class="col-md-4 mb-3 mb-md-0">
+              <div class="fs-1 fw-bold text-primary">
+                <span class="counter" data-aos="fade-up" data-aos-duration="1200" data-target="1250">0</span>개
+              </div>
+              <div class="fw-semibold text-secondary">탐지한 총 취약점</div>
+            </div>
+            <div class="col-md-4 mb-3 mb-md-0">
+              <div class="fs-1 fw-bold text-primary">
+                <span class="counter" data-aos="fade-up" data-aos-duration="1200" data-target="530">0</span>건
+              </div>
+              <div class="fw-semibold text-secondary">자동 제출한 PR 수</div>
+            </div>
+            <div class="col-md-4">
+              <div class="fs-1 fw-bold text-primary">
+                <span class="counter" data-aos="fade-up" data-aos-duration="1200" data-target="170">0</span>개
+              </div>
+              <div class="fw-semibold text-secondary">분석 완료한 레포지토리</div>
+            </div>
+          </div>
+        </div>
     </section>
 
     <section id="team" class="team section">
