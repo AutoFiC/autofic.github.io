@@ -342,7 +342,7 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function () {
   // 주요 이벤트 데이터
   const events = [
-    { label: "Lint", year: "1978", icon: "assets/img/sast_logo/lint.png", pos: 0, desc: "최초의 정적 코드 분석기" },
+    { label: "Lint", year: "1978", icon: "assets/img/sast_logo/lint.png", pos: 0, desc: "최초의 정적 코드 분석기<br>오픈소스 시대의 시작" },
     { label: "Fortify", year: "2003", icon: "assets/img/sast_logo/fortify.png", pos: 15, desc: "기업 환경 보안 코드 스캐너<br>대규모 프로젝트에 특화" },
     { label: "SonarQube", year: "2008", icon: "assets/img/sast_logo/sonarqube.png", pos: 29, desc: "지속적 통합과 품질 관리 자동화<br>코드 스멜·버그·취약점 종합 진단" },
     { label: "Snyk", year: "2015", icon: "assets/img/sast_logo/snyk.png", pos: 45, desc: "OSS 보안 취약점 탐지, 개발자 친화<br>DevSecOps 환경을 위한 통합 도구" },
@@ -376,7 +376,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="icon">
         <img src="${ev.icon}" alt="${ev.label}" style="width:36px;height:36px;object-fit:contain;">
       </div>
-      <div class="main">${ev.label}</div>
+      <div class="main${ev.label === "AutoFiC" ? " autofic-main" : ""}">${ev.label}</div>
       <div class="date">${ev.year}</div>
       <div class="custom-tooltip">${ev.desc || ""}</div>
     `;

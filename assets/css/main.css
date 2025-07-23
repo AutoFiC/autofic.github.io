@@ -3475,7 +3475,7 @@ section,
 .timeline-track {
   position: relative;
   width: 100%;
-  max-width: 1120px;
+  max-width: 1050px;
   height: 210px;
   min-width: 310px;
   margin: 0 auto;
@@ -3577,7 +3577,7 @@ section,
   opacity: 1;
 }
 
-.timeline-event.top .custom-tooltip { bottom: auto; top: 56px; }
+.timeline-event.top .custom-tooltip { bottom: auto; top: 62px; }
 
 @media (max-width: 900px) {
   .timeline-track { width: 100%; }
@@ -3588,4 +3588,9 @@ section,
   .timeline-event { width: 84px; font-size: 0.93em;}
   .timeline-bar, .timeline-bar.gray { height: 22px;}
   .timeline-bar { top: 56px;}
+}
+
+.autofic-main {
+  color: #2268e0 !important;  /* 원하는 색상 코드로 */
+  font-weight: bold;          /* (선택) 더 굵게 */
 }
