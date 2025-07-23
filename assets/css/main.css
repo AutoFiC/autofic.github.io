@@ -3389,3 +3389,203 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 60%);
   font-size: 14px;
 }
+
+.team-card {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  text-align: center;
+  padding: 2.5rem 1.1rem 2.1rem 1.1rem;
+  position: relative;
+  min-height: 230px;
+  border: 2px solid transparent;
+  /* transition에 transform 꼭 추가! */
+  transition: 
+    box-shadow 0.22s cubic-bezier(.48,1.48,.35,1), 
+    border 0.22s cubic-bezier(.48,1.48,.35,1), 
+    background 0.22s cubic-bezier(.48,1.48,.35,1),
+    transform 0.18s cubic-bezier(.48,1.48,.35,1);
+}
+
+.profile-pic img {
+  width: 120px; /* 사진을 살짝 키우면 시각적으로 더 커보임 */
+  height: 120px;
+  margin-bottom: 1rem; /* 사진-이름 간격 늘리기 */
+}
+.member-name {
+  font-size: 1.15rem;  /* 이름 폰트 더 크게 */
+  margin-bottom: 0.3rem;
+  color: #20232a;
+}
+.popup-info {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(20px, -50%);
+  background: #fff;
+  min-width: 380px;
+  max-width: 380px;
+  border-radius: 1rem;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.11);
+  border: 1px solid #f1f1f1;
+  padding: 1rem 1rem 1rem 1rem;
+  text-align: left;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  animation: none;
+  transition: opacity 0.26s;
+}
+
+.team-card:hover {
+  box-shadow: 0 8px 32px rgba(52, 95, 237, 0.18), 0 2px 10px rgba(0,0,0,0.09);
+  border: 2.5px solid #4782fa;
+  background: #f5faff;
+  transform: scale(1.05);
+  z-index: 2;
+}
+.team-card:hover .popup-info,
+.team-card:focus-within .popup-info {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+  animation: fadeInRight 0.33s cubic-bezier(.18,.89,.32,1.28) forwards;
+}
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translate(70px, -50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(20px, -50%);
+  }
+}
+
+/*--------------------------------------------------------------*/
+.timeline-modern {
+      background: #fff;
+      border-radius: 1.4rem;
+      padding: 44px 0 36px 0;
+      margin: 2.5rem 0;
+      display: flex;
+      justify-content: center;
+    }
+.timeline-track {
+  position: relative;
+  width: 100%;
+  max-width: 1120px;
+  height: 210px;
+  min-width: 310px;
+  margin: 0 auto;
+  display: block;
+}
+.timeline-bar {
+  position: absolute;
+  width: 3.7px;
+  height: 58px;
+  background: #4668a2;
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%) scaleY(1);
+  border-radius: 7px;
+  z-index: 2;
+  transition: transform 0.23s cubic-bezier(.41,1.24,.66,1.01), background 0.18s;
+}
+.timeline-bar.gray {
+  background: #c0c3d0;
+  height: 39px;
+  z-index: 1;
+}
+.timeline-bar.animated {
+  transform: translate(-50%, -50%) scaleY(1.78);
+  box-shadow: 0 2px 15px 0 rgba(70,104,162,0.13);
+}
+.timeline-bar.gray.animated {
+  background: #9c9ef7;
+  transform: translate(-50%, -50%) scaleY(1.3);
+  box-shadow: 0 2px 6px 0 rgba(70,104,162,0.09);
+}
+.timeline-event {
+  position: absolute;
+  width: 144px;
+  text-align: center;
+  font-size: 1rem;
+  color: #5d516e;
+  left: 0;
+  transform: translateX(-50%);
+  transition: color 0.19s;
+  z-index: 3;
+  pointer-events: auto;
+  user-select: none;
+  cursor: pointer;
+}
+.timeline-event.top { top: -25px; }
+.timeline-event.bottom { bottom: -23px; }
+.timeline-event .icon {
+  font-size: 1.25rem;
+  margin-bottom: 2px;
+  display: inline-block;
+  color: #4668a2;
+}
+.timeline-event .main {
+  font-weight: 600;
+  color: #303841;
+}
+.timeline-event .date {
+  font-size: 0.97em;
+  color: #bbaea1;
+  margin-top: -2px;
+}
+/* 커스텀 툴팁 */
+.custom-tooltip {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -38px;
+  background: #4668a2;
+  color: #fff;
+  font-size: 0.96em;
+  padding: 7px 16px;
+  border-radius: 10px;
+  white-space: nowrap;
+  box-shadow: 0 2px 12px 0 rgba(50,65,100,0.13);
+  z-index: 10;
+  pointer-events: auto;
+  opacity: 0;
+  transition: opacity 0.17s cubic-bezier(.3,1,.65,1.15), left 0.1s, transform 0.1s;
+  font-weight: 500;
+}
+
+.custom-tooltip.left-edge {
+  left: 0;
+  right: auto;
+  transform: translateX(0);
+}
+.custom-tooltip.right-edge {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+
+.timeline-event:hover .custom-tooltip,
+.timeline-event:focus .custom-tooltip,
+.timeline-event .custom-tooltip.active {
+  display: block;
+  opacity: 1;
+}
+
+.timeline-event.top .custom-tooltip { bottom: auto; top: 56px; }
+
+@media (max-width: 900px) {
+  .timeline-track { width: 100%; }
+  .timeline-event { width: 120px; font-size: 0.98em;}
+}
+@media (max-width: 650px) {
+  .timeline-track { width: 100%; min-width: 0; height: 128px;}
+  .timeline-event { width: 84px; font-size: 0.93em;}
+  .timeline-bar, .timeline-bar.gray { height: 22px;}
+  .timeline-bar { top: 56px;}
+}

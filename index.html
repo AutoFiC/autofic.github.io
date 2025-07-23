@@ -72,7 +72,7 @@
         <div class="row gy-4">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
             <h1>Hi, This is <strong>AutoFiC</strong></h1>
-            <p>AI 기반 보안 취약점 탐지 및 자동화 솔루션</p>
+            <p>AI 기반 오픈소스 취약점 탐지/수정 및 자동 PR 솔루션</p>
             <div class="d-flex">
                   <a href="https://pypi.org/" class="btn-get-started me-2">
                     <i class="bi bi-filetype-py"></i>
@@ -285,318 +285,349 @@
     </section>  
 
     <section id="summary" class="container my-5 py-5">
-        <div class="container py-5">
-
-          <div class="row align-items-center">
-            <!-- 왼쪽: 타이틀 -->
-            <div class="col-lg-6 mb-4 mb-lg-0">
-              <h2 class="fw-bold display-5 mb-2" style="color:#222;">숫자로 보는<br><span style="font-weight:900;">AutoFiC</span></h2>
-              <p class="lead text-secondary">AI 기반 오픈소스 취약점 탐지 및 자동 PR 솔루션</p>
-            </div>
-            <!-- 오른쪽: 상세 설명 -->
-            <div class="col-lg-6">
-              <div class="mb-4">
-                <h4 class="fw-bold mb-1" style="color:#263238;">총 탐지된 취약점</h4>
-                <p class="text-secondary mb-0">
-                  AI 기반의 자동화된 분석을 통해 총
-                  <span id="vuln-total" class="fw-bold text-primary">1,250개</span>의 취약점을 발견했습니다.
-                </p>
+      <div class="container py-5">
+        <div class="row align-items-center">
+          <!-- 왼쪽: 타이틀/숫자 -->
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <h2 class="fw-bold display-5 mb-2 text-start" style="color:#222;">
+              숫자로 보는<br><span style="font-weight:900;">AutoFiC</span>
+            </h2>
+            <div class="row mt-5 text-start">
+              <div class="col-md-4 mb-3 mb-md-0">
+                <div class="fw-semibold text-secondary">탐지한 총 취약점</div>
+                <div class="fs-1 fw-bold text-primary">
+                  <span class="counter" data-aos="fade-up" data-aos-duration="5000" data-target="1250">0</span>개
+                </div>
               </div>
-              <div class="mb-4">
-                <h4 class="fw-bold mb-1" style="color:#263238;">자동 제출한 PR 수</h4>
-                <p class="text-secondary mb-0">
-                  LLM이 직접 코드를 수정하여
-                  <span id="pr-total" class="fw-bold text-primary">530건</span>의 Pull Request를 자동으로 생성했습니다.
-                </p>
+              <div class="col-md-4 mb-3 mb-md-0">
+                <div class="fw-semibold text-secondary">자동 제출한 PR 수</div>
+                <div class="fs-1 fw-bold text-primary">
+                  <span class="counter" data-aos="fade-up" data-aos-duration="5000" data-target="530">0</span>건
+                </div>
               </div>
-              <div>
-                <h4 class="fw-bold mb-1" style="color:#263238;">분석 완료한 레포지토리</h4>
-                <p class="text-secondary mb-0">
-                  총 <span id="repo-total" class="fw-bold text-primary">170개</span>의 GitHub 오픈소스 레포지토리를 대상으로 취약점 분석 및 개선 작업을 수행했습니다.
-                </p>
+              <div class="col-md-4">
+                <div class="fw-semibold text-secondary">분석 완료한 레포지토리</div>
+                <div class="fs-1 fw-bold text-primary">
+                  <span class="counter" data-aos="fade-up" data-aos-duration="5000" data-target="170">0</span>개
+                </div>
               </div>
             </div>
           </div>
-
-          <!-- 숫자 강조: 하단 통계 -->
-          <div class="row mt-5 text-center">
-            <div class="col-md-4 mb-3 mb-md-0">
-              <div class="fs-1 fw-bold text-primary">
-                <span class="counter" data-aos="fade-up" data-aos-duration="3000" data-target="1250">0</span>개
-              </div>
-              <div class="fw-semibold text-secondary">탐지한 총 취약점</div>
+          <!-- 오른쪽: 설명 -->
+          <div class="col-lg-6">
+            <div class="mb-4">
+              <h4 class="fw-bold mb-1" style="color:#263238;">AutoFiC의 역사</h4>
+              <p id="autofic-duration" style="font-size:1.07em; color:#263238; font-weight:500;"></p>
             </div>
-            <div class="col-md-4 mb-3 mb-md-0">
-              <div class="fs-1 fw-bold text-primary">
-                <span class="counter" data-aos="fade-up" data-aos-duration="3000" data-target="530">0</span>건
-              </div>
-              <div class="fw-semibold text-secondary">자동 제출한 PR 수</div>
+            <div class="mb-4">
+              <h4 class="fw-bold mb-1" style="color:#263238;">평균 분석 속도 <span style="color:#2268e0;">5분 이내</span></h4>
+              <p>
+                코드 분석부터 PR 자동 생성까지 <span style="color:#2268e0; font-weight:bold;">5분</span>  이내 완료,
+                수작업 대비 최대 <span style="color:#2268e0; font-weight:bold;">5배</span> 빠릅니다.
+              </p>
             </div>
-            <div class="col-md-4">
-              <div class="fs-1 fw-bold text-primary">
-                <span class="counter" data-aos="fade-up" data-aos-duration="3000" data-target="170">0</span>개
-              </div>
-              <div class="fw-semibold text-secondary">분석 완료한 레포지토리</div>
+            <div>
+              <h4 class="fw-bold mb-1" style="color:#263238;">분석 완료한 레포지토리</h4>
+              <p class="text-secondary mb-0">
+                AutoFiC을 통해 총 <span id="repo-total" class="fw-bold text-primary">170개</span>의 오픈소스 레포지토리 중 
+                <span id="vuln-total" class="fw-bold text-primary">1,250개</span>의 취약점을 발견했고, 
+                LLM이 직접 코드를 수정하여
+                <span id="pr-total" class="fw-bold text-primary">530건</span>의 Pull Request를 자동으로 생성했습니다.
+              </p>
             </div>
           </div>
         </div>
+      </div>
+      <!-- 하단 타임라인 (좌우 col-lg-12로 맞춤) -->
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="timeline-track position-relative mx-auto mt-3" id="timelineTrack"></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section id="team" class="team section">
-      <div class="container section-title" data-aos="fade-up">
+      <div class="container section-title" data-aos="fade-up" data-aos-delay="200">
         <h2>AutoFiC Team</h2>
-        <p><strong>AutoFiC</strong> 서비스는 AI와 보안을 사랑하는 개발자들의 협업으로 탄생했습니다.</p>
-        </div><!-- End Section Title -->
-        <div class="container">
-          <div class="row gy-4">
-            
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-              <div class="team-member d-flex align-items-start">
-                <div class="pic">
-                  <img
-                    src="assets/img/person/player1.png"
-                    class="img-fluid rounded-circle"
-                    width="120"
-                    height="120"
-                    alt="Inyeong Jang">
+      </div>
+      <div class="container">
+        <div class="row justify-content-center gx-4 gy-4">
+          <!-- 팀원 카드 시작 -->
+          <div class="col-6 col-md-2" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-card position-relative rounded-3 shadow text-center p-3 mb-3">
+              <a href="https://github.com/inyeongjang" target="_blank" class="text-decoration-none" style="display:block">
+                <div class="profile-pic mx-auto mb-2">
+                  <img src="assets/img/person/player1.png" class="img-fluid rounded-circle border" width="100" height="100" alt="Inyeong Jang">
                 </div>
-                <div class="member-info ms-3 mt-3">
-                  <h4>Inyeong Jang</h4>
-                  <span>Project Manager</span>
-                  <div class="social">
+                <div class="member-name fw-bold">Inyeong Jang</div>
+                <div class="social">
                     <a href="https://github.com/inyeongjang"><i class="bi bi-github"></i></a>
                     <a href=""><i class="bi bi-twitter-x"></i></a>
                     <a href=""><i class="bi bi-facebook"></i></a>
                     <a href=""><i class="bi bi-instagram"></i></a>
                     <a href=""><i class="bi bi-linkedin"></i></a>
                   </div>
-                </div>
+              </a>
+              <!-- 팝업 -->
+              <div class="popup-info rounded-3 shadow-lg p-3">
+                <h5>🪪 Project Manager</h5>
+                <ul>
+                  <li>AutoFiC 총괄 PM</li>
+                  <li>Semgrep/CodeQL/SnykCode 자동화 설계</li>
+                  <li>Semgrep/CodeQL/SnykCode 전처리 구현</li>
+                </ul>
               </div>
             </div>
+          </div>
 
-
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-              <div class="team-member d-flex align-items-start">
-                <div class="pic">
-                  <img
-                    src="assets/img/person/player2.jpeg"
-                    class="img-fluid rounded-circle"
-                    width="120"
-                    height="120"
-                    alt="Minchae Kim">
+          <div class="col-6 col-md-2" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-card position-relative rounded-3 shadow text-center p-3 mb-3">
+              <a href="https://github.com/minxxcozy" target="_blank" class="text-decoration-none" style="display:block">
+                <div class="profile-pic mx-auto mb-2">
+                  <img src="assets/img/person/player2.jpeg" class="img-fluid rounded-circle border" width="100" height="100" alt="Inyeong Jang">
                 </div>
-                <div class="member-info ms-3 mt-3">
-                  <h4>Minchae Kim</h4>
-                  <span>Development Team</span>
-                  <div class="social">
+                <div class="member-name fw-bold">Minchae Kim</div>
+                <div class="social">
                     <a href="https://github.com/minxxcozy"><i class="bi bi-github"></i></a>
                     <a href=""><i class="bi bi-twitter-x"></i></a>
                     <a href=""><i class="bi bi-facebook"></i></a>
                     <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""> <i class="bi bi-linkedin"></i> </a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
                   </div>
-                </div>
+              </a>
+              <!-- 팝업 -->
+              <div class="popup-info rounded-3 shadow-lg p-3">
+                <h5>👩🏻‍💻 Development Team</h5>
+                <ul>
+                  <li>Semgrep 자동 실행 구현</li>
+                  <li>Prompt Engineering 및 템플릿 설계</li>
+                  <li>Prompt 자동 생성 기능 구현</li>
+                  <li>Diff 생성, Patch 로직 구현</li>
+                  <li>전체 AutoFiC 프로젝트 리팩토링</li>
+                </ul>
               </div>
-            </div><!-- End Team Member -->
+            </div>
+          </div>
 
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-              <div class="team-member d-flex align-items-start">
-                <div class="pic">
-                  <img
-                    src="assets/img/person/player3.png"
-                    class="img-fluid rounded-circle"
-                    width="120"
-                    height="120"
-                    alt="Eunsol Kim">
+          <div class="col-6 col-md-2" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-card position-relative rounded-3 shadow text-center p-3 mb-3">
+              <a href="https://github.com/eunsol1530" target="_blank" class="text-decoration-none" style="display:block">
+                <div class="profile-pic mx-auto mb-2">
+                  <img src="assets/img/person/player3.png" class="img-fluid rounded-circle border" width="100" height="100" alt="Inyeong Jang">
                 </div>
-                <div class="member-info ms-3 mt-3">
-                  <h4>Eunsol Kim</h4>
-                  <span>Development Team</span>
-                  <div class="social">
+                <div class="member-name fw-bold">Eunsol Kim</div>
+                <div class="social">
                     <a href="https://github.com/eunsol1530"><i class="bi bi-github"></i></a>
                     <a href=""><i class="bi bi-twitter-x"></i></a>
                     <a href=""><i class="bi bi-facebook"></i></a>
                     <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""> <i class="bi bi-linkedin"></i> </a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
                   </div>
-                </div>
+              </a>
+              <!-- 팝업 -->
+              <div class="popup-info rounded-3 shadow-lg p-3">
+                <h5>👩🏻‍💻 Development Team</h5>
+                <ul>
+                  <li>Github API 연동 구현</li>
+                  <li>LLM API 연동, 자동 호출 구현</li>
+                  <li>UI/UX 개선</li>
+                  <li>전체 AutoFiC 프로젝트 리팩토링</li>
+                </ul>
               </div>
-            </div><!-- End Team Member -->
+            </div>
+          </div>
 
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-              <div class="team-member d-flex align-items-start">
-                <div class="pic">
-                  <img
-                    src="assets/img/person/player4.png"
-                    class="img-fluid rounded-circle"
-                    width="120"
-                    height="120"
-                    alt="Seonju Park">
+          <div class="col-6 col-md-2" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-card position-relative rounded-3 shadow text-center p-3 mb-3">
+              <a href="https://github.com/seoonju" target="_blank" class="text-decoration-none" style="display:block">
+                <div class="profile-pic mx-auto mb-2">
+                  <img src="assets/img/person/player4.png" class="img-fluid rounded-circle border" width="100" height="100" alt="Inyeong Jang">
                 </div>
-                <div class="member-info ms-3 mt-3">
-                  <h4>Seonju Park</h4>
-                  <span>Research Team</span>
-                  <div class="social">
+                <div class="member-name fw-bold">Seonju Park</div>
+                <div class="social">
                     <a href="https://github.com/seoonju"><i class="bi bi-github"></i></a>
                     <a href=""><i class="bi bi-twitter-x"></i></a>
                     <a href=""><i class="bi bi-facebook"></i></a>
                     <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""> <i class="bi bi-linkedin"></i> </a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
                   </div>
-                </div>
+              </a>
+              <!-- 팝업 -->
+              <div class="popup-info rounded-3 shadow-lg p-3">
+                <h5>🔬 Research Team</h5>
+                <ul>
+                  <li>Dashboard Backend 구현</li>
+                </ul>
               </div>
-            </div><!-- End Team Member -->
+            </div>
+          </div>
 
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-              <div class="team-member d-flex align-items-start">
-                <div class="pic">
-                  <img
-                    src="assets/img/person/player5.png"
-                    class="img-fluid rounded-circle"
-                    width="120"
-                    height="120"
-                    alt="Jeongmin Oh">
+          <div class="col-6 col-md-2" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-card position-relative rounded-3 shadow text-center p-3 mb-3">
+              <a href="https://github.com/soonnae" target="_blank" class="text-decoration-none" style="display:block">
+                <div class="profile-pic mx-auto mb-2">
+                  <img src="assets/img/person/player5.png" class="img-fluid rounded-circle border" width="100" height="100" alt="Inyeong Jang">
                 </div>
-                <div class="member-info ms-3 mt-3">
-                  <h4>Jeongmin Oh</h4>
-                  <span>Development Team</span>
-                  <div class="social">
+                <div class="member-name fw-bold">Jeongmin Oh</div>
+                <div class="social">
                     <a href="https://github.com/soonnae"><i class="bi bi-github"></i></a>
                     <a href=""><i class="bi bi-twitter-x"></i></a>
                     <a href=""><i class="bi bi-facebook"></i></a>
                     <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""> <i class="bi bi-linkedin"></i> </a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
                   </div>
-                </div>
+              </a>
+              <!-- 팝업 -->
+              <div class="popup-info rounded-3 shadow-lg p-3">
+                <h5>👩🏻‍💻 Development Team</h5>
+                <ul>
+                  <li>Source Code 다운로드 구현</li>
+                  <li>LLM 응답 parsing 구현</li>
+                  <li>Diff 생성, Patch 로직 구현</li>
+                  <li>전체 AutoFiC 프로젝트 리팩토링</li>
+                </ul>
               </div>
-            </div><!-- End Team Member -->
-
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-              <div class="team-member d-flex align-items-start">
-                <div class="pic">
-                  <img
-                    src="assets/img/person/player6.png"
-                    class="img-fluid rounded-circle"
-                    width="120"
-                    height="120"
-                    alt="Hongseo Jang">
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center gx-4 gy-4">
+          <div class="col-6 col-md-2" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-card position-relative rounded-3 shadow text-center p-3 mb-3">
+              <a href="https://github.com/pxxguin" target="_blank" class="text-decoration-none" style="display:block">
+                <div class="profile-pic mx-auto mb-2">
+                  <img src="assets/img/person/player6.png" class="img-fluid rounded-circle border" width="100" height="100" alt="Inyeong Jang">
                 </div>
-                <div class="member-info ms-3 mt-3">
-                  <h4>Hongseo Jang</h4>
-                  <span>Research Team</span>
-                  <div class="social">
+                <div class="member-name fw-bold">Hongseo Jang</div>
+                <div class="social">
                     <a href="https://github.com/pxxguin"><i class="bi bi-github"></i></a>
                     <a href=""><i class="bi bi-twitter-x"></i></a>
                     <a href=""><i class="bi bi-facebook"></i></a>
                     <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""> <i class="bi bi-linkedin"></i> </a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
                   </div>
-                </div>
+              </a>
+              <!-- 팝업 -->
+              <div class="popup-info rounded-3 shadow-lg p-3">
+                <h5>🔬 Research Team</h5>
+                <ul>
+                  <li>SAST/LLM 취약점 탐지 성능 비교 논문 작성</li>
+                  <li>Fork, Clone, commit PR 자동화 구현</li>
+                  <li>CI Workflow 구현 및 Slack, Discord 알림 구현</li>
+                  <li>SnykCode, CodeQL 취약한 Repo 자동 수집</li>
+                  <li>autofic.github.io 설계 및 디자인</li>
+                </ul>
               </div>
-            </div><!-- End Team Member -->
+            </div>
+          </div>
 
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-              <div class="team-member d-flex align-items-start">
-                <div class="pic">
-                  <img
-                    src="assets/img/person/player7.png"
-                    class="img-fluid rounded-circle"
-                    width="120"
-                    height="120"
-                    alt="Yunji Jeong">
+          <div class="col-6 col-md-2" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-card position-relative rounded-3 shadow text-center p-3 mb-3">
+              <a href="https://github.com/jungyun404" target="_blank" class="text-decoration-none" style="display:block">
+                <div class="profile-pic mx-auto mb-2">
+                  <img src="assets/img/person/player7.png" class="img-fluid rounded-circle border" width="100" height="100" alt="Inyeong Jang">
                 </div>
-                <div class="member-info ms-3 mt-3">
-                  <h4>Yunji Jeong</h4>
-                  <span>Research Team</span>
-                  <div class="social">
+                <div class="member-name fw-bold">Yunji Jeong</div>
+                <div class="social">
                     <a href="https://github.com/jungyun404"><i class="bi bi-github"></i></a>
                     <a href=""><i class="bi bi-twitter-x"></i></a>
                     <a href=""><i class="bi bi-facebook"></i></a>
                     <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""> <i class="bi bi-linkedin"></i> </a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
                   </div>
-                </div>
+              </a>
+              <!-- 팝업 -->
+              <div class="popup-info rounded-3 shadow-lg p-3">
+                <h5>🔬 Research Team</h5>
+                <ul>
+                  <li>SAST/LLM 취약점 탐지 성능 비교 논문 작성</li>
+                  <li>Dashboard Frontend 설계 및 구현</li>
+                </ul>
               </div>
-            </div><!-- End Team Member -->
+            </div>
+          </div>
 
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-              <div class="team-member d-flex align-items-start">
-                <div class="pic">
-                  <img
-                    src="assets/img/person/player8.png"
-                    class="img-fluid rounded-circle"
-                    width="120"
-                    height="120"
-                    alt="Yunjeong Choe">
+          <div class="col-6 col-md-2" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-card position-relative rounded-3 shadow text-center p-3 mb-3">
+              <a href="https://github.com/yjchoe818" target="_blank" class="text-decoration-none" style="display:block">
+                <div class="profile-pic mx-auto mb-2">
+                  <img src="assets/img/person/player8.png" class="img-fluid rounded-circle border" width="100" height="100" alt="Inyeong Jang">
                 </div>
-                <div class="member-info ms-3 mt-3">
-                  <h4>Yunjeong Choe</h4>
-                  <span>Research Team</span>
-                  <div class="social">
+                <div class="member-name fw-bold">Yunjeong Choe</div>
+                <div class="social">
                     <a href="https://github.com/yjchoe818"><i class="bi bi-github"></i></a>
                     <a href=""><i class="bi bi-twitter-x"></i></a>
                     <a href=""><i class="bi bi-facebook"></i></a>
                     <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""> <i class="bi bi-linkedin"></i> </a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
                   </div>
-                </div>
+              </a>
+              <!-- 팝업 -->
+              <div class="popup-info rounded-3 shadow-lg p-3">
+                <h5>🔬 Research Team</h5>
+                <ul>
+                  <li>SAST/LLM 취약점 탐지 성능 비교 논문 작성</li>
+                  <li>Dashboard Frontend 설계 및 구현</li>
+                </ul>
               </div>
-            </div><!-- End Team Member -->
+            </div>
+          </div>
 
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-              <div class="team-member d-flex align-items-start">
-                <div class="pic">
-                  <img
-                    src="assets/img/person/player9.png"
-                    class="img-fluid rounded-circle"
-                    width="120"
-                    height="120"
-                    alt="Suhyun Park">
+          <div class="col-6 col-md-2" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-card position-relative rounded-3 shadow text-center p-3 mb-3">
+              <a href="https://github.com/lovehyun" target="_blank" class="text-decoration-none" style="display:block">
+                <div class="profile-pic mx-auto mb-2">
+                  <img src="assets/img/person/player9.png" class="img-fluid rounded-circle border" width="100" height="100" alt="Inyeong Jang">
                 </div>
-                <div class="member-info ms-3 mt-3">
-                  <h4>Suhyun Park</h4>
-                  <span>Mentor</span>
-                  <div class="social">
+                <div class="member-name fw-bold">Suhyun Park</div>
+                <div class="social">
                     <a href="https://github.com/lovehyun"><i class="bi bi-github"></i></a>
                     <a href=""><i class="bi bi-twitter-x"></i></a>
                     <a href=""><i class="bi bi-facebook"></i></a>
                     <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""> <i class="bi bi-linkedin"></i> </a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
                   </div>
-                </div>
+              </a>
+              <!-- 팝업 -->
+              <div class="popup-info rounded-3 shadow-lg p-3">
+                <h5>👨🏻‍🏫 Mentor</h5>
+                <ul>
+                  <li>Mentoring</li>
+                  <li>Code Review</li>
+                </ul>
               </div>
-            </div><!-- End Team Member -->
+            </div>
+          </div>
 
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-              <div class="team-member d-flex align-items-start">
-                <div class="pic">
-                  <img
-                    src="assets/img/person/player10.png"
-                    class="img-fluid rounded-circle"
-                    width="120"
-                    height="120"
-                    alt="Changhyun Lee">
+          <div class="col-6 col-md-2" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-card position-relative rounded-3 shadow text-center p-3 mb-3">
+              <a href="https://github.com/eeche" target="_blank" class="text-decoration-none" style="display:block">
+                <div class="profile-pic mx-auto mb-2">
+                  <img src="assets/img/person/player10.png" class="img-fluid rounded-circle border" width="100" height="100" alt="Inyeong Jang">
                 </div>
-                <div class="member-info ms-3 mt-3">
-                  <h4>Changhyun Lee</h4>
-                  <span>Project Leader</span>
-                  <div class="social">
+                <div class="member-name fw-bold">Changhyun Lee</div>
+                <div class="social">
                     <a href="https://github.com/eeche"><i class="bi bi-github"></i></a>
                     <a href=""><i class="bi bi-twitter-x"></i></a>
                     <a href=""><i class="bi bi-facebook"></i></a>
                     <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""> <i class="bi bi-linkedin"></i> </a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
                   </div>
-                </div>
+              </a>
+              <!-- 팝업 -->
+              <div class="popup-info rounded-3 shadow-lg p-3">
+                <h5>👨🏻‍🏫 Project Leader</h5>
+                <ul>
+                  <li>Code Review</li>
+                </ul>
               </div>
-            </div><!-- End Team Member -->
+            </div>
           </div>
-
         </div>
-
-      </section><!-- /Team Section -->
-
-
+      </div>
+    </section>
+    
     <!-- Faq 2 Section -->
     <section id="faq-2" class="faq-2 section light-background">
 

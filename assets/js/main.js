@@ -288,3 +288,169 @@ AOS.init();
       }
       requestAnimationFrame(update);
     }
+    
+function isTouchDevice() {
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+}
+
+if (isTouchDevice()) {
+  // 모바일(터치)에서만 click 팝업!
+  document.querySelectorAll('.team-card').forEach(card => {
+    card.addEventListener('click', function (e) {
+      // 다른 카드의 popup 모두 닫기
+      document.querySelectorAll('.popup-info').forEach(p => { if(p !== card.querySelector('.popup-info')) p.style.display = 'none'; });
+      let popup = card.querySelector('.popup-info');
+      popup.style.display = (popup.style.display === 'block') ? 'none' : 'block';
+      e.stopPropagation();
+    });
+  });
+  document.addEventListener('click', function () {
+    document.querySelectorAll('.popup-info').forEach(p => p.style.display = 'none');
+  });
+}
+// PC에서는 CSS hover로만 제어(기존대로)
+
+// a 태그 클릭시 포커스 해제(모바일, 데스크톱 모두)
+document.querySelectorAll('.team-card a').forEach(function(link) {
+  link.addEventListener('mouseup', function() {
+    this.blur();
+  });
+});
+
+
+function getDurationString(fromDate, toDate) {
+  const msDay = 1000 * 60 * 60 * 24;
+  const days = Math.floor((toDate - fromDate) / msDay);
+
+  // 항상 일수로만 출력
+  return `${days}일의 역사를 가지고 있습니다.`;
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  const baseDate = new Date(2025, 4, 1); // 5월 = 4
+  const today = new Date();
+  const msDay = 1000 * 60 * 60 * 24;
+  const days = Math.floor((today - baseDate) / msDay);
+
+  // days(숫자)만 색상 강조
+  document.getElementById("autofic-duration").innerHTML =
+    `2025년 5월 1일부터, <br>AutoFiC과 함께한 <span style="color:#4782fa; font-weight:700;">${days}</span>일의 여정`;
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  // 주요 이벤트 데이터
+  const events = [
+    { label: "Lint", year: "1978", icon: "assets/img/sast_logo/lint.png", pos: 0, desc: "최초의 정적 코드 분석기" },
+    { label: "Fortify", year: "2003", icon: "assets/img/sast_logo/fortify.png", pos: 15, desc: "기업 환경 보안 코드 스캐너<br>대규모 프로젝트에 특화" },
+    { label: "SonarQube", year: "2008", icon: "assets/img/sast_logo/sonarqube.png", pos: 29, desc: "지속적 통합과 품질 관리 자동화<br>코드 스멜·버그·취약점 종합 진단" },
+    { label: "Snyk", year: "2015", icon: "assets/img/sast_logo/snyk.png", pos: 45, desc: "OSS 보안 취약점 탐지, 개발자 친화<br>DevSecOps 환경을 위한 통합 도구" },
+    { label: "Semgrep", year: "2020", icon: "assets/img/sast_logo/semgrep.png", pos: 56, desc: "빠르고 유연한 패턴 기반 정적 분석<br>사용자 정의 룰로 보안 탐지" },
+    { label: "GPT-3.5", year: "2023", icon: "assets/img/sast_logo/gpt.png", pos: 68, desc: "AI 기반 코드 리뷰 및 생성<br>자연어로 보안 코드 설명 가능" },
+    { label: "AutoFiC", year: "2025", icon: "assets/img/sast_logo/logo.png", pos: 79, desc: "AI가 자동으로 PR까지 제출<br>탐지/수정/PR 통합 자동화" },
+  ];
+
+  const totalBars = 80; // 0~79
+  const timeline = document.getElementById("timelineTrack");
+
+  // 1. 막대 배치
+  for (let i = 0; i < totalBars; i++) {
+    const mainIdx = events.findIndex(ev => ev.pos === i);
+    const bar = document.createElement('div');
+    bar.className = "timeline-bar" + (mainIdx !== -1 ? "" : " gray");
+    bar.style.left = `${(i/(totalBars-1))*100}%`;
+    if (mainIdx !== -1) {
+      bar.setAttribute("data-idx", mainIdx); // 메인 이벤트 인덱스 저장
+    }
+    timeline.appendChild(bar);
+  }
+
+  // 2. 이벤트 노드 배치 (위/아래 번갈아)
+  events.forEach((ev, idx) => {
+    const eventEl = document.createElement('div');
+    eventEl.className = "timeline-event " + (idx%2===0 ? "top" : "bottom");
+    eventEl.style.left = `${(ev.pos/(totalBars-1))*100}%`;
+    eventEl.setAttribute("data-idx", idx);
+    eventEl.innerHTML = `
+      <div class="icon">
+        <img src="${ev.icon}" alt="${ev.label}" style="width:36px;height:36px;object-fit:contain;">
+      </div>
+      <div class="main">${ev.label}</div>
+      <div class="date">${ev.year}</div>
+      <div class="custom-tooltip">${ev.desc || ""}</div>
+    `;
+    timeline.appendChild(eventEl);
+  });
+
+  // 3. 막대 proximity 확대
+  const bars = Array.from(timeline.querySelectorAll('.timeline-bar'));
+  timeline.addEventListener('mousemove', function(e) {
+    const rect = timeline.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    bars.forEach(bar => {
+      const barRect = bar.getBoundingClientRect();
+      const barX = (barRect.left + barRect.right) / 2 - rect.left;
+      const dist = Math.abs(mouseX - barX);
+      if (dist < 40) {
+        bar.classList.add('animated');
+      } else {
+        bar.classList.remove('animated');
+      }
+    });
+  });
+  timeline.addEventListener('mouseleave', function() {
+    bars.forEach(bar => bar.classList.remove('animated'));
+  });
+
+  // 4. 툴팁 - 막대/이벤트 둘 다!
+  // 툴팁 보여주기/숨기기 함수
+function showTooltip(idx) {
+  document.querySelectorAll('.custom-tooltip').forEach(tip => tip.classList.remove('active', 'left-edge', 'right-edge'));
+  const eventNode = document.querySelector(`.timeline-event[data-idx="${idx}"]`);
+  const tooltip = eventNode ? eventNode.querySelector('.custom-tooltip') : null;
+  if (tooltip) {
+    tooltip.classList.add('active');
+    adjustTooltipPosition(tooltip, eventNode);
+  }
+}
+  function hideTooltip() {
+    document.querySelectorAll('.custom-tooltip').forEach(tip => tip.classList.remove('active'));
+  }
+
+  // (1) 이모지+이름에 마우스 올리면
+  timeline.addEventListener('mouseover', function(e) {
+    const eventNode = e.target.closest('.timeline-event');
+    if (eventNode) {
+      showTooltip(eventNode.getAttribute("data-idx"));
+    }
+    // (2) 메인 막대에 마우스 올리면
+    if (e.target.classList.contains('timeline-bar') && e.target.hasAttribute('data-idx')) {
+      showTooltip(e.target.getAttribute("data-idx"));
+    }
+  });
+  timeline.addEventListener('mouseout', function(e) {
+    // 툴팁 바깥으로 나갈 때만 숨김
+    if (!timeline.contains(e.relatedTarget)) hideTooltip();
+  });
+});
+
+
+// 툴팁이 화면을 벗어나지 않도록 위치 조정
+function adjustTooltipPosition(tooltip, parent) {
+  tooltip.classList.remove('left-edge', 'right-edge');
+  tooltip.style.left = '';
+  tooltip.style.right = '';
+  tooltip.style.display = 'block';
+  tooltip.style.opacity = '0';
+  setTimeout(() => {
+    const rect = tooltip.getBoundingClientRect();
+    if (rect.left < 8) {
+      tooltip.classList.add('left-edge');
+    } else if (rect.right > window.innerWidth - 8) {
+      tooltip.classList.add('right-edge');
+    }
+    tooltip.style.display = '';
+    tooltip.style.opacity = '';
+  }, 2);
+}
