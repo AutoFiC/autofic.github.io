@@ -26,7 +26,7 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
@@ -71,7 +71,9 @@
       <div class="container">
         <div class="row gy-4">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
-            <h1>Hi, This is <strong>AutoFiC</strong></h1>
+            <h1>
+              <span id="typed"></span>
+            </h1>
             <p>AI 기반 오픈소스 취약점 탐지/수정 및 자동 PR 솔루션</p>
             <div class="d-flex">
                   <a href="https://pypi.org/" class="btn-get-started me-2">
@@ -286,11 +288,8 @@
     <section id="summary" class="container my-5 py-5" data-aos="fade-up" data-aos-delay="200">
       <div class="container py-5">
         <div class="row align-items-center">
-          <!-- 왼쪽: 타이틀/숫자 -->
           <div class="col-lg-6 mb-4 mb-lg-0">
-
             <div class="d-flex align-items-center" style="min-height:150px;">
-              <!-- 로고 영역 -->
               <div class="logo-flip" id="shieldLogo" style="width: 150px; height: 150px; flex-shrink:0; display: flex; align-items: center; justify-content: center;">
                 <div class="logo-front" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
                   <img src="assets/img/sast_logo/logo.png" alt="Shield Logo" style="width: 100%; height: 100%;" draggable="false">
@@ -299,8 +298,6 @@
                   <img src="assets/img/sast_logo/logo_back.png" alt="Shield Back" style="width: 100%; height: 100%;">
                 </div>
               </div>
-
-              <!-- 텍스트 중앙정렬을 위한 래퍼 div -->
               <div class="d-flex flex-column justify-content-center ms-4" style="height: 150px;">
                 <h2 class="fw-bold display-5 mb-0 text-start" style="color:#222;">
                   숫자로 보는<br>

@@ -265,6 +265,13 @@ AOS.init();
       if (detail.classList.contains('counter')) {
         startCount(detail);
       }
+      // summary 섹션이 들어올 때만 실행
+      if(event.detail.id === 'summary') {
+        const logo = document.getElementById('shieldLogo');
+        // 0에서 900deg까지 5회전 애니메이션
+        logo.style.transition = "transform 2.2s cubic-bezier(0.23, 1, 0.32, 1)";
+        logo.style.transform = "rotateY(1440deg)";
+      }
     });
 
     function startCount(el) {
@@ -484,4 +491,16 @@ document.addEventListener('mouseup', function(e) {
         dragRotation = 0;
         logo.style.cursor = 'grab';
     }
+});
+
+// 자동 타이핑
+document.addEventListener("DOMContentLoaded", function() {
+    var typed = new Typed('#typed', {
+      strings: ['Hi, This is <strong>AutoFiC</strong>'],
+      typeSpeed: 60,
+      backSpeed: 60,
+      showCursor: true,  // 커서(타이핑 커서) 표시 원하면 true
+      contentType: 'html', // strong 태그 등 HTML을 적용하려면 'html'
+      loop: true           // 무한 반복
+    });
 });

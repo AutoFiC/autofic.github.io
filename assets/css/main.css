@@ -203,6 +203,46 @@ h6 {
   }
 }
 
+.btn-getstarted {
+  position: relative;
+  display: inline-block;
+  padding: 8px 28px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 999px;
+  background: #212738;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+  overflow: hidden;
+}
+
+.btn-getstarted::after {
+  content: "";
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 8px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg,#e58c8a,#eec0c6);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+  pointer-events: none;
+}
+
+.btn-getstarted:hover,
+.btn-getstarted:focus {
+  color: #17a2b8;
+}
+
+.btn-getstarted:hover::after,
+.btn-getstarted:focus::after {
+  transform: scaleX(1);
+}
+
+
 /* Index Page Header
 ------------------------------*/
 .index-page .header {
