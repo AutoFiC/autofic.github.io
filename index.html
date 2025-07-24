@@ -153,7 +153,6 @@
 
     <!-- About Section -->
     <section id="about" class="about section">
-
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>About us</h2>
@@ -289,9 +288,27 @@
         <div class="row align-items-center">
           <!-- 왼쪽: 타이틀/숫자 -->
           <div class="col-lg-6 mb-4 mb-lg-0">
-            <h2 class="fw-bold display-5 mb-2 text-start" style="color:#222;">
-              숫자로 보는<br><span style="font-weight:900;">AutoFiC</span>
-            </h2>
+
+            <div class="d-flex align-items-center" style="min-height:150px;">
+              <!-- 로고 영역 -->
+              <div class="logo-flip" id="shieldLogo" style="width: 150px; height: 150px; flex-shrink:0; display: flex; align-items: center; justify-content: center;">
+                <div class="logo-front" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                  <img src="assets/img/sast_logo/logo.png" alt="Shield Logo" style="width: 100%; height: 100%;" draggable="false">
+                </div>
+                <div class="logo-back" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                  <img src="assets/img/sast_logo/logo_back.png" alt="Shield Back" style="width: 100%; height: 100%;">
+                </div>
+              </div>
+
+              <!-- 텍스트 중앙정렬을 위한 래퍼 div -->
+              <div class="d-flex flex-column justify-content-center ms-4" style="height: 150px;">
+                <h2 class="fw-bold display-5 mb-0 text-start" style="color:#222;">
+                  숫자로 보는<br>
+                  <span style="font-weight:900;">AutoFiC</span>
+                </h2>
+              </div>
+            </div>
+
             <div class="row mt-5 text-start">
               <div class="col-md-4 mb-3 mb-md-0">
                 <div class="fw-semibold text-secondary">탐지한 총 취약점</div>
@@ -458,7 +475,10 @@
               <div class="popup-info rounded-3 shadow-lg p-3">
                 <h5>🔬 Research Team</h5>
                 <ul>
-                  <li>Dashboard Backend 구현</li>
+                  <li>SAST/LLM 취약점 탐지 성능 비교 논문 작성</li>
+                  <li>CD 자동화 파이프라인 구현</li>
+                  <li>autofic.github.io 코드 리뷰</li>
+                  <li>Dashboard Back-end 설계 및 구현</li>
                 </ul>
               </div>
             </div>
@@ -542,7 +562,10 @@
                 <h5>🔬 Research Team</h5>
                 <ul>
                   <li>SAST/LLM 취약점 탐지 성능 비교 논문 작성</li>
-                  <li>Dashboard Frontend 설계 및 구현</li>
+                  <li>Log 수집 및 데이터 전처리 구현</li>
+                  <li>autofic.github.io 코드 리뷰</li>
+                  <li>Dashboard Back-end 설계 및 구현</li>
+                  <li>Semgrep 취약한 Repo 자동 수집</li>
                 </ul>
               </div>
             </div>
@@ -568,7 +591,9 @@
                 <h5>🔬 Research Team</h5>
                 <ul>
                   <li>SAST/LLM 취약점 탐지 성능 비교 논문 작성</li>
-                  <li>Dashboard Frontend 설계 및 구현</li>
+                  <li>Log 수집 및 데이터 전처리 코드 리뷰</li>
+                  <li>autofic.github.io 코드 리뷰</li>
+                  <li>Dashboard Front-end 설계 및 구현</li>
                 </ul>
               </div>
             </div>

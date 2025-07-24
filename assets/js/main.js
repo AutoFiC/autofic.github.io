@@ -454,3 +454,34 @@ function adjustTooltipPosition(tooltip, parent) {
     tooltip.style.opacity = '';
   }, 2);
 }
+
+const logo = document.getElementById('shieldLogo');
+let isDragging = false;
+let startX = 0;
+let dragRotation = 0;
+
+// 이미지 드래그 방지
+document.querySelector('.logo-front img').addEventListener('dragstart', e => e.preventDefault());
+
+logo.addEventListener('mousedown', function(e) {
+    isDragging = true;
+    startX = e.clientX;
+    logo.style.cursor = 'grabbing';
+});
+
+document.addEventListener('mousemove', function(e) {
+    if (!isDragging) return;
+    const dragDistance = e.clientX - startX;
+    dragRotation = dragDistance / 200 * 180; // 자연스러운 회전
+    logo.style.transform = `rotateY(${dragRotation}deg)`;
+});
+
+document.addEventListener('mouseup', function(e) {
+    if (isDragging) {
+        // 드래그가 끝나면 앞면(0도)으로 자동 복귀!
+        logo.style.transform = `rotateY(0deg)`;
+        isDragging = false;
+        dragRotation = 0;
+        logo.style.cursor = 'grab';
+    }
+});
