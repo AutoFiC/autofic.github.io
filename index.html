@@ -320,7 +320,7 @@
                 </div>
               </div>
               <div class="col-md-4">
-                <div class="fw-semibold text-secondary">분석 완료한 레포지토리</div>
+                <div class="fw-semibold text-secondary">승인된 PR 수</div>
                 <div class="fs-1 fw-bold text-primary">
                   <span class="counter" data-aos="fade-up" data-aos-duration="5000" data-target="170">0</span>개
                 </div>
@@ -334,10 +334,9 @@
               <p id="autofic-duration" style="font-size:1.07em; color:#263238; font-weight:500;"></p>
             </div>
             <div class="mb-4">
-              <h4 class="fw-bold mb-1" style="color:#263238;">평균 분석 속도 <span style="color:#2268e0;">5분 이내</span></h4>
+              <h4 class="fw-bold mb-1" style="color:#263238;">평균 취약점 탐지 개수</h4>
               <p>
-                코드 분석부터 PR 자동 생성까지 <span style="color:#2268e0; font-weight:bold;">5분</span>  이내 완료,
-                수작업 대비 최대 <span style="color:#2268e0; font-weight:bold;">5배</span> 빠릅니다.
+                AutoFiC은 오픈소스 레포지토리 1개당 평균 <span id="mean-vuln" style="color:#2268e0; font-weight:bold;">10개</span>의 취약점을 탐지했습니다.
               </p>
             </div>
             <div>
@@ -346,7 +345,8 @@
                 AutoFiC을 통해 총 <span id="repo-total" class="fw-bold text-primary">170개</span>의 오픈소스 레포지토리 중 
                 <span id="vuln-total" class="fw-bold text-primary">1,250개</span>의 취약점을 발견했고, 
                 LLM이 직접 코드를 수정하여
-                <span id="pr-total" class="fw-bold text-primary">530건</span>의 Pull Request를 자동으로 생성했습니다.
+                <span id="pr-total" class="fw-bold text-primary">530건</span>의 Pull Request를 자동으로 생성하였으며,
+                <span id="approve-pr" class="fw-bold text-primary">530건</span>가 병합되었습니다.
               </p>
             </div>
           </div>

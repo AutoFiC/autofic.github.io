@@ -243,17 +243,22 @@ AOS.init();
         const totalVulns = data.repos.reduce((sum, repo) => sum + (repo.vulnerabilities || 0), 0);
         const totalPRs = data.prs.length;
         const totalRepos = data.repos.length;
+        const approvedPRs = data.prs.filter(pr => pr.approved === true).length;
+        const avgVulnsPerRepo = totalVulns / totalRepos;
+        const avgFormatted = avgVulnsPerRepo.toFixed(1);
 
         // 상세 설명 텍스트용 숫자 갱신
+        document.getElementById('mean-vuln').textContent = avgFormatted.toLocaleString() + "개";
         document.getElementById('vuln-total').textContent = totalVulns.toLocaleString() + "개";
         document.getElementById('pr-total').textContent = totalPRs.toLocaleString() + "건";
         document.getElementById('repo-total').textContent = totalRepos.toLocaleString() + "개";
+        document.getElementById('approve-pr').textContent = approvedPRs.toLocaleString() + "개";
 
         // 하단 카운터용 data-target도 갱신
         const counters = document.querySelectorAll('.counter');
         if (counters[0]) counters[0].setAttribute('data-target', totalVulns);
         if (counters[1]) counters[1].setAttribute('data-target', totalPRs);
-        if (counters[2]) counters[2].setAttribute('data-target', totalRepos);
+        if (counters[2]) counters[2].setAttribute('data-target', approvedPRs);
       } catch (err) {
         console.error('통계 정보 불러오기 실패:', err);
       }
