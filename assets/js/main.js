@@ -244,7 +244,7 @@ async function updateStats() {
     const totalPRs = data.prs.length;
     const totalRepos = data.repos.length;
     const approvedPRs = data.prs.filter(pr => pr.approved === true).length;
-    const avgVulnsPerRepo = totalVulns / totalRepos;
+    const avgVulnsPerRepo = (totalVulns / totalRepos) || 0;
     const avgFormatted = avgVulnsPerRepo.toFixed(1);
 
     // 상세 설명 텍스트용 숫자 갱신
@@ -559,7 +559,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const actionsCommands = [
     { cmd: "# Python 가상 환경 생성 및 적용",   output: [] },
     { cmd: "python -m venv .venv",  output: [] },
-    { cmd: ".venv/Scripts/activate",  output: [] },
+    { cmd: ".venv\\Scripts\\activate",  output: [] },
     { cmd: "# Python 필수 패키지 설치",   output: [] },
     { cmd: "pip install --upgrade pip",   output: [] },
     { cmd: "pip install -r requirements.txt",
