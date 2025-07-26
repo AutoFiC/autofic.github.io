@@ -1157,7 +1157,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ② GitHub Actions 데모용 커맨드
   const actionsCommands = [
     { cmd: "# AutoFiC 탐지/수정/PR 자동화 시작하기",   output: [] },
-    { cmd: "python -m autofic_core.cli --repo https://github.com/user/project --save-dir \"C:\\Users\\Username\\download\\AutoFiCResult\" --sast --llm --patch --pr",
+    { cmd: "python -m autofic_core.cli --repo https://github.com/user/project --save-dir \"C:\\Users\\Username\\download\\AutoFiCResult\" --sast semgrep --llm --patch --pr",
       output: [
         "    ___         __        _______ ______",  
         "   /   | __  __/ /_____  / ____(_) ____/",  
