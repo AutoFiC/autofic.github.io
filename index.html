@@ -27,10 +27,13 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-
+  <link rel="stylesheet" href="style.css" />
   <!-- Main CSS File -->
+   <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  ></script>
   <link href="assets/css/main.css" rel="stylesheet">
-
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>  
   <!-- =======================================================
   * Template Name: Arsha
   * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
@@ -285,7 +288,7 @@
       </div>
     </section>  
 
-    <section id="summary" class="container my-5 py-5" data-aos="fade-up" data-aos-delay="200">
+    <section id="summary" class="container bg-white my-5 py-5" data-aos="fade-up" data-aos-delay="200">
       <div class="container py-5">
         <div class="row align-items-center">
           <div class="col-lg-6 mb-4 mb-lg-0">
@@ -361,6 +364,384 @@
         </div>
       </div>
     </section>
+
+    <section id="timeline-section" class="section" data-aos="fade-up" data-aos-delay="300">
+      <div class="container section-title" data-aos="fade-up" data-aos-delay="200">
+        <h2>How to use AutoFiC?</h2>
+        <p>AutoFiC을 처음 사용하더라도, 손쉽게 사용할 수 있게 설명서를 제공합니다.<br>순서대로, 사용자 실습환경의 운영체제에 맞게 토글을 선택하시면 이해하기 쉬운 설명서를 볼 수 있습니다.</p>
+      
+      </div>
+      <ul class="timeline">
+        <!-- 기본 설정 -->
+        <li>
+          <div class="direction-r">
+            <div class="flag-wrapper">
+              <img src="assets/img/sast_logo/logo.png" alt="GitHub" class="flag-icon logo_png" />
+              <span class="flag-text">AutoFiC 기본 설정</span>
+
+              <!-- id → class 로 변경 -->
+              <div class="platform-selector">
+                <span class="platform-selected">Windows</span>
+                <span class="arrow">▾</span>
+                <ul class="platform-options">
+                  <li data-platform="Windows" id="openModalBtn1">Windows</li>
+                  <li data-platform="Mac"     id="openModalBtn2">Mac</li>
+                </ul>
+              </div>
+            </div>
+            <div class="desc">AutoFiC의 기본 설정을 완료합니다. 환경변수 설정과 실습환경 구축 등을 포함합니다.</div>
+          </div>
+        </li>
+
+        <!-- ② SAST 도구 설치 항목 -->
+        <li>
+          <div class="direction-l">
+            <div class="flag-wrapper">
+              <span class="flag-text">SAST 도구 설치 및 연동</span>
+              <img src="assets/img/sast_logo/snyk.png" alt="GitHub" class="flag-icon logo_png" />
+
+              <!-- id → class 로 변경 -->
+              <div class="platform-selector">
+                <span class="platform-selected">Windows</span>
+                <span class="arrow">▾</span>
+                <ul class="platform-options">
+                  <li data-platform="Windows" id="openModalBtn3">Windows</li>
+                  <li data-platform="Mac"     id="openModalBtn4">Mac</li>
+                </ul>
+              </div>
+            </div>
+            <div class="desc">Semgrep, CodeQL, SnykCode의 로컬 설치 방법과 API 키를 할당받는 과정을 설명합니다.</div>
+          </div>
+        </li>
+
+        <li>
+          <div class="direction-r">
+            <div class="flag-wrapper">
+              <img
+                src="assets/img/sast_logo/logo.png"
+                alt="GitHub"
+                class="flag-icon logo_png"
+              />
+              <span class="flag-text">AutoFiC 사용법</span>
+
+              <div class="platform-selector" id="platformSelector">
+                <span class="platform-selected">Windows</span>
+                <span class="arrow">▾</span>
+                <ul class="platform-options">
+                  <li data-platform="Windows" id="openModalBtn5">Windows</li>
+                  <li data-platform="Mac" id="openModalBtn6">Mac</li>
+                </ul>
+              </div>
+            </div>
+            <div class="desc">
+              AutoFiC을 통해, 오픈소스 레포지토리의 취약점을 탐지/수정/PR 전과정을 자동화합니다.
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- ------------------------------------------- -->
+    <!-- 첫번째, 윈도우 모달 -->
+    <div class="modal fade" id="myModal1" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable custom-size">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">AutoFiC 기본 설정</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <!-- AutoFiC 터미널 -->
+            <h4 class="bi bi-github">    Github repository clone</h4>
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+              </div>
+              <div class="terminal-body" id="demoTerminal">
+                <!-- JS로 채워집니다 -->
+              </div>
+            </div>
+            <!-- GitHub Actions 터미널 -->
+            <h4 class="mt-4 bi bi-cloud-download">   Python 가상환경 설정</h4>
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+              </div>
+              <div class="terminal-body" id="actionsTerminal">
+                <!-- JS로 채워집니다 -->
+              </div>
+            </div>
+            <!-- .env 파일 설정 -->
+            <h4 class="mt-4 bi bi-database-add">   .env 파일 설정</h4>
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+              </div>
+              <div class="terminal-body" id="envfileTerminal">
+                <!-- JS로 채워집니다 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 첫번째, 맥모달 -->
+    <div class="modal fade" id="myModal2" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable custom-size">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">AutoFiC 기본 설정</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <!-- AutoFiC 터미널 -->
+            <h4 class="bi bi-github">    Github repository clone</h4>
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+              </div>
+              <div class="terminal-body" id="demoTerminal">
+                <!-- JS로 채워집니다 -->
+              </div>
+            </div>
+
+            <!-- GitHub Actions 터미널 -->
+            <h4 class="mt-4 bi bi-cloud-download">   Python 가상환경 설정</h4>
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+              </div>
+              <div class="terminal-body" id="actionsTerminal">
+                <!-- JS로 채워집니다 -->
+              </div>
+            </div>
+            <!-- .env 파일 설정 -->
+            <h4 class="mt-4 bi bi-database-add">   .env 파일 설정</h4>
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+              </div>
+              <div class="terminal-body" id="envfileTerminal">
+                <!-- JS로 채워집니다 -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ------------------------------------------- -->
+    <!-- 세번째, 윈도우 모달 -->
+    <div class="modal fade" id="myModal3" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable custom-size">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">SAST 도구 설치 및 연동</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <!-- AutoFiC 터미널 -->
+            <h4 class="bi bi-rocket-takeoff">    Semgrep 설치</h4>
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+              </div>
+              <div class="terminal-body" id="demoTerminal">
+                <!-- JS로 채워집니다 -->
+              </div>
+            </div>
+
+            <!-- GitHub Actions 터미널 -->
+            <h4 class="mt-4 bi bi-train-front">   CodeQL 설치</h4>
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+              </div>
+              <div class="terminal-body" id="actionsTerminal">
+                <!-- JS로 채워집니다 -->
+              </div>
+            </div>
+            <!-- .env 파일 설정 -->
+            <h4 class="mt-4 bi bi-database-add">   SynkCode 설치</h4>
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+              </div>
+              <div class="terminal-body" id="envfileTerminal">
+                <!-- JS로 채워집니다 -->
+              </div>
+            </div>
+
+            <h6 class="mt-4 bi bi-database-add">   .env파일에 아래 사진의 api키를 입력합니다.</h6>
+            <div class="terminal-image-wrapper mt-4">
+                <img
+                  src="assets/img/example.png"
+                  alt="SynkCode 설치 예시"
+                  class="terminal-image"
+                />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 네번째, 맥모달 -->
+    <div class="modal fade" id="myModal4" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable custom-size">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">SAST 도구 설치 및 연동</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <!-- AutoFiC 터미널 -->
+            <h4 class="bi bi-rocket-takeoff">    Semgrep 설치</h4>
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+              </div>
+              <div class="terminal-body" id="demoTerminal">
+                <!-- JS로 채워집니다 -->
+              </div>
+            </div>
+
+            <!-- GitHub Actions 터미널 -->
+            <h4 class="mt-4 bi bi-train-front">   CodeQL 설치</h4>
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+              </div>
+              <div class="terminal-body" id="actionsTerminal">
+                <!-- JS로 채워집니다 -->
+              </div>
+            </div>
+            <!-- .env 파일 설정 -->
+            <h4 class="mt-4 bi bi-database-add">   SynkCode 설치</h4>
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+              </div>
+              <div class="terminal-body" id="envfileTerminal">
+                <!-- JS로 채워집니다 -->
+              </div>
+            </div>
+
+            <h6 class="mt-4 bi bi-database-add">   .env파일에 아래 사진의 api키를 입력합니다.</h6>
+            <div class="terminal-image-wrapper mt-4">
+                <img
+                  src="assets/img/example.png"
+                  alt="SynkCode 설치 예시"
+                  class="terminal-image"
+                />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 다섯번째, 윈도우모달 -->
+    <div class="modal fade" id="myModal5" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable custom-size">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">AutoFiC 사용법</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <!-- AutoFiC 터미널 -->
+            <h4 class="bi bi-rocket-takeoff">    AutoFiC 사용법</h4>
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+              </div>
+              <div class="terminal-body" id="demoTerminal">
+                <!-- JS로 채워집니다 -->
+              </div>
+            </div>
+
+            <!-- GitHub Actions 터미널 -->
+            <h4 class="mt-4 bi bi-train-front">   AutoFiC 탐지/수정/PR 자동화 실행</h4>
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+              </div>
+              <div class="terminal-body" id="actionsTerminal">
+                <!-- JS로 채워집니다 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 여섯 번째, 맥모달 -->
+    <div class="modal fade" id="myModal6" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable custom-size">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">AutoFiC 사용법</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <!-- AutoFiC 터미널 -->
+            <h4 class="bi bi-rocket-takeoff">    AutoFiC 사용법</h4>
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+              </div>
+              <div class="terminal-body" id="demoTerminal">
+                <!-- JS로 채워집니다 -->
+              </div>
+            </div>
+
+            <!-- GitHub Actions 터미널 -->
+            <h4 class="mt-4 bi bi-train-front">   AutoFiC 탐지/수정/PR 자동화 실행</h4>
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+              </div>
+              <div class="terminal-body" id="actionsTerminal">
+                <!-- JS로 채워집니다 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <section id="team" class="team section">
       <div class="container section-title" data-aos="fade-up" data-aos-delay="200">

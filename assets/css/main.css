@@ -57,6 +57,8 @@
   scroll-behavior: smooth;
 }
 
+
+
 /*--------------------------------------------------------------
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
@@ -3695,4 +3697,559 @@ section,
   justify-content: center;  /* 텍스트 세로 중앙정렬 */
   margin-left: 2rem;
   height: 150px;
+}
+
+/* 다른 페이지 */
+/* 모달 콘텐츠 배경을 완전 흰색으로 강제 지정 */
+.modal-content {
+  background-color: #ffffff;
+}
+
+/* 모달 중앙 정렬 + 그림자 효과 */
+.modal-dialog {
+  margin: 1.75rem auto;
+  max-width: 500px;
+}
+
+.modal-content {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* style.css */
+.modal-dialog.custom-size {
+  /* 최대 너비를 800px로 지정 */
+  max-width: 1100px;
+  display: flex;            /* .modal-content를 가운데 정렬 가능 */
+  align-items: center;      
+}
+
+/* ───────────────────────────────────────────
+   Modal 내부 터미널 스타일
+──────────────────────────────────────────── */
+
+/* 전체 창 */
+.terminal-window {
+  background-color: #000;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-top: 1rem;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+  font-family: 'Source Code Pro', monospace;
+  color: #fff;              /* 녹색 글씨 */
+  line-height: 1.4;
+}
+/* command(명령어) 부분만 녹색 */
+.terminal-body .command {
+  color: #0f0;
+}
+
+/* output(결과) 부분은 흰색 유지 */
+.terminal-body .output {
+  color: #fff;
+}
+
+/* 상단 버튼 바 */
+.terminal-header {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.terminal-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.terminal-btn.red    { background: #ff5f56; }
+.terminal-btn.yellow { background: #ffbd2e; }
+.terminal-btn.green  { background: #27c93f; }
+
+/* 본문(명령어 출력) */
+.terminal-body {
+  /* 공백과 줄바꿈을 유지하면서 자동 줄바꿈 */
+  white-space: pre-wrap;
+
+  /* 단어 중간에서도 부드럽게 줄바꿈 */
+  word-break: break-word;     /* 오래된 브라우저 호환 */
+  overflow-wrap: anywhere;    /* 최신 권장 */
+
+  /* 가로 스크롤은 필요한 만큼 살려두기 */
+  overflow-x: auto;
+  overflow-y: auto;
+
+  /* (선택) 스크롤바가 보일 때만 공간 잡도록 */
+  scrollbar-width: thin;      /* 파이어폭스 */
+  -ms-overflow-style: auto;   /* IE 10+ */
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+/* style.css 에 추가/수정 */
+.cursor {
+  display: inline-block;
+  width: 0.6ch;              /* 글자 하나 폭만큼 */
+  height: 1em;
+  background-color: #0f0;
+  vertical-align: bottom;
+  animation: blink 1s steps(2) infinite;
+  margin: 0;                 /* 기존 margin-left 제거 */
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* 한 줄씩 들어갈 div 는 white-space: pre 로 */
+.terminal-body > div {
+  white-space: pre-wrap;
+  line-height: 1.4;        /* 기존 값과 동일하게 유지 */
+}
+
+
+body {	
+  font-family: 'Open Sans', sans-serif;
+}
+
+.terminal-body .comment {
+  color: #888;            /* 연한 회색 */
+  font-style: italic;     /* 이탤릭체 */
+  margin: 0.5rem 0;       /* 위아래 여유 */
+  white-space: pre;       /* 공백·줄바꿈 유지 */
+}
+
+/* ================ The Timeline ================ */
+
+.timeline {
+  position: relative;
+  width: 660px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 1em 0;
+  list-style-type: none;
+}
+
+.timeline:before {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  content: ' ';
+  display: block;
+  width: 8px;
+  height: 100%;
+  margin-left: -3px;
+  background: -moz-linear-gradient(top, rgba(80,80,80,0) 0%, rgb(80,80,80) 8%, rgb(80,80,80) 92%, rgba(80,80,80,0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,87,153,1)), color-stop(100%,rgba(125,185,232,1)));
+  background: -webkit-linear-gradient(top, rgba(80,80,80,0) 0%, rgb(80,80,80) 8%, rgb(80,80,80) 92%, rgba(80,80,80,0) 100%);
+  background: -o-linear-gradient(top, rgba(80,80,80,0) 0%, rgb(80,80,80) 8%, rgb(80,80,80) 92%, rgba(80,80,80,0) 100%);
+  background: -ms-linear-gradient(top, rgba(80,80,80,0) 0%, rgb(80,80,80) 8%, rgb(80,80,80) 92%, rgba(80,80,80,0) 100%);
+  background: linear-gradient(to bottom, rgba(80,80,80,0) 0%, rgb(80,80,80) 8%, rgb(80,80,80) 92%, rgba(80,80,80,0) 100%);
+  
+  z-index: 5;
+}
+
+.timeline li {
+  padding: 1em 0;
+}
+
+.timeline li:after {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.direction-l {
+  position: relative;
+  width: 297px;
+  float: left;
+  text-align: right;
+}
+
+.direction-r {
+  position: relative;
+  width: 295px;
+  float: right;
+}
+
+.flag-wrapper {
+  display: inline-flex;       /* 가로 flex 컨테이너 */
+  align-items: center;        /* 수직 가운데 정렬 */
+  gap: 0.5rem;                /* 아이콘–텍스트 간 간격 */
+  cursor: pointer;            /* 클릭 가능 표시 */
+}
+.flag-wrapper h4 {
+  margin: 0;               /* 기본 상하 여백 제거 */
+  line-height: 1;          /* 텍스트 높이를 아이콘에 딱 맞추기 */
+  font-size: 1.25rem;      /* 필요에 따라 폰트 크기 조절 */
+  font-weight: 600;        /* 예시로 볼드 */
+}
+
+
+.direction-l .flag {
+  -webkit-box-shadow: -1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+  -moz-box-shadow: -1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+  box-shadow: -1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+}
+
+.direction-r .flag {
+  -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+  -moz-box-shadow: 1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+}
+
+.direction-l .flag:before,
+.direction-r .flag:before {
+  position: absolute;
+  top: 50%;
+  right: -40px;
+  content: ' ';
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin-top: -10px;
+  background: #fff;
+  border-radius: 10px;
+  border: 4px solid rgb(255,80,80);
+  z-index: 10;
+}
+
+.direction-r .flag:before {
+  left: -40px;
+}
+
+.direction-l .flag:after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  height: 0;
+  width: 0;
+  margin-top: -8px;
+  border: solid transparent;
+  border-left-color: rgb(248,248,248);
+  border-width: 8px;
+  pointer-events: none;
+}
+
+.direction-r .flag:after {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  height: 0;
+  width: 0;
+  margin-top: -8px;
+  border: solid transparent;
+  border-right-color: rgb(248,248,248);
+  border-width: 8px;
+  pointer-events: none;
+}
+
+.time-wrapper {
+  display: inline;
+  
+  line-height: 1em;
+  font-size: 0.66666em;
+  color: rgb(250,80,80);
+  vertical-align: middle;
+}
+
+.direction-l .time-wrapper {
+  float: left;
+}
+
+.direction-r .time-wrapper {
+  float: right;
+}
+
+.time {
+  display: inline-block;
+  padding: 4px 6px;
+  background: rgb(248,248,248);
+}
+
+.desc {
+  margin: 1em 0.75em 0 0;
+  
+  font-size: 0.77777em;
+  font-style: italic;
+  line-height: 1.5em;
+}
+
+.direction-r .desc {
+  margin: 1em 0 0 0.75em;
+}
+
+
+/* ================ Timeline Media Queries ================ */
+
+@media screen and (max-width: 660px) {
+
+.timeline {
+ 	width: 100%;
+	padding: 4em 0 1em 0;
+}
+
+.timeline li {
+	padding: 2em 0;
+}
+
+.direction-l,
+.direction-r {
+	float: none;
+	width: 100%;
+
+	text-align: center;
+}
+
+.flag-wrapper {
+	text-align: center;
+}
+
+.flag {
+	background: rgb(255,255,255);
+	z-index: 15;
+}
+
+.direction-l .flag:before,
+.direction-r .flag:before {
+  position: absolute;
+  top: -30px;
+	left: 50%;
+	content: ' ';
+	display: block;
+	width: 12px;
+	height: 12px;
+	margin-left: -9px;
+	background: #fff;
+	border-radius: 10px;
+	border: 4px solid rgb(255,80,80);
+	z-index: 10;
+}
+
+.direction-l .flag:after,
+.direction-r .flag:after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: -8px;
+	height: 0;
+	width: 0;
+	margin-left: -8px;
+	border: solid transparent;
+	border-bottom-color: rgb(255,255,255);
+	border-width: 8px;
+	pointer-events: none;
+}
+
+.time-wrapper {
+	display: block;
+	position: relative;
+	margin: 4px 0 0 0;
+	z-index: 14;
+}
+
+.direction-l .time-wrapper {
+	float: none;
+}
+
+.direction-r .time-wrapper {
+	float: none;
+}
+
+.desc {
+	position: relative;
+	margin: 1em 0 0 0;
+	padding: 1em;
+	background: rgb(245,245,245);
+	-webkit-box-shadow: 0 0 1px rgba(0,0,0,0.20);
+	-moz-box-shadow: 0 0 1px rgba(0,0,0,0.20);
+	box-shadow: 0 0 1px rgba(0,0,0,0.20);
+	
+  z-index: 15;
+}
+
+.direction-l .desc,
+.direction-r .desc {
+	position: relative;
+	margin: 1em 1em 0 1em;
+	padding: 1em;
+	
+  z-index: 15;
+}
+
+}
+
+
+@media screen and (min-width: 400px) and (max-width: 660px) {
+  .direction-l .desc,
+  .direction-r .desc {
+    margin: 1em 4em 0 4em;
+  }
+}
+
+
+/* 기본 flag-icon 크기 (24px) */
+.flag-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+/* --flag-icon-size 커스텀 프로퍼티로 크기 오버라이드 가능 */
+.flag-icon {
+  width: var(--flag-icon-size, 30px);
+  height: var(--flag-icon-size, 30px);
+  object-fit: contain;
+}
+
+.logo_png {
+  width: var(--flag-icon-size, 50px);
+  height: var(--flag-icon-size, 50px);
+  object-fit: contain;
+}
+/* ── 텍스트 스타일 ── */
+.flag-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #333;                /* 필요에 따라 색 변경 */
+  white-space: nowrap;        /* 줄바꿈 방지 */
+}
+
+
+/* 네비게이션 */
+/* 플랫폼 선택기 - pill 형태 */
+.platform-selector {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  border: 2px solid #333;
+  border-radius: 999px;
+  cursor: pointer;
+  user-select: none;
+  margin-left: 1rem;           /* 아이콘/텍스트와 간격 */
+  background: #fff;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+/* 화살표 */
+.platform-selector .arrow {
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+/* 옵션 리스트 (숨김) */
+.platform-options {
+  display: none;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 0;
+  z-index: 10;
+}
+
+/* 열렸을 때 */
+.platform-selector.open .platform-options {
+  display: block;
+}
+
+/* 각 옵션 라인 */
+.platform-options li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.platform-options li:hover {
+  background-color: #f0f0f0;
+}
+
+/* 3) (선택) 만약 드롭다운이 텍스트에 너무 붙어 있다면 */
+.platform-selector {
+  margin-left: auto; /* 플래그-텍스트와 드롭다운 사이 여유 공간 */
+}
+
+.os-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: 2px solid #4facfe;
+  border-radius: 4px;
+  background: #fff;
+  color: #4facfe;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+.os-dropdown .os-arrow {
+  margin-left: 0.5rem;
+  transition: transform 0.2s;
+}
+
+/* 화살표가 열린 상태에 회전 표시 */
+.os-dropdown.open .os-arrow {
+  transform: rotate(180deg);
+}
+
+/* 옵션 리스트 */
+.os-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  padding: 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 10;
+  min-width: 100%;
+}
+
+/* 열리면 보이게 */
+.os-dropdown.open .os-options {
+  display: block;
+}
+
+/* 옵션 항목 */
+.os-options li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.os-options li:hover {
+  background: #f0f8ff;
+}
+.direction-l .flag-wrapper {
+  flex-direction: row-reverse;
+}
+
+.direction-l .flag-wrapper {
+  margin-left: -90px;  /* 숫자를 조절하며 원하는 위치로 당기세요 */
+}
+
+/* 터미널 윈도우 안 이미지 래퍼 */
+.terminal-image-wrapper {
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* 이미지 크기 제한 */
+.terminal-image {
+  max-width: 100%;     /* 부모 너비에 맞춰 축소 */
+  height: auto;
+  display: inline-block;
 }
