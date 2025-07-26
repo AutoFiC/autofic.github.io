@@ -3464,7 +3464,7 @@ section,
   padding: 1rem;
   
   z-index: 1000;            /* 충분히 높여서 다른 카드 위로 */
-  min-width: 380px;
+  min-width: 350px;
   max-width: 380px;
   
   display: none;            /* hover 전에는 숨김 */
