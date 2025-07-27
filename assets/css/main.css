@@ -761,6 +761,70 @@ h6 {
   }
 }
 
+/* 1) 컨테이너 세팅 */
+.lang-switcher {
+  position: relative;
+  display: inline-block;
+  margin-right: -20px;   /* btn‑getstarted 와 동일 간격 */
+  cursor: pointer;
+}
+
+/* 2) 아이콘 크기 및 스타일 */
+.lang-switcher__icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+}
+
+/* 3) 드롭다운 기본 숨김 */
+.lang-switcher__dropdown {
+  display: none;
+  position: absolute;
+  top: 130%;            /* 아이콘 바로 아래 */
+  left: 0;             /* 오른쪽 정렬 */
+  background: var(--contrast-color);
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  white-space: nowrap;
+  z-index: 10;
+}
+
+/* 4) li & a 스타일 */
+.lang-switcher__dropdown li + li {
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+.lang-switcher__dropdown a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--dark-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+/* 5) hover 또는 포커스 시 드롭다운 보이기 */
+.lang-switcher:hover .lang-switcher__dropdown,
+.lang-switcher:focus-within .lang-switcher__dropdown {
+  display: block;
+}
+
+/* 플래그 아이콘 공통 스타일 */
+.flag-icon {
+  width: 20px;           /* 원하시는 크기로 조절 */
+  height: auto;
+  vertical-align: middle;
+  margin-right: 0.5rem;  /* 텍스트와 간격 */
+  border-radius: 2px;    /* optional: 모서리 둥글게 */
+}
+
+/* 드롭다운 내부 */
+.lang-switcher__dropdown a {
+  display: flex;
+  align-items: center;   /* 아이콘-텍스트 수직 중앙 정렬 */
+}
+
 /*--------------------------------------------------------------
 # Scroll Top Button
 --------------------------------------------------------------*/
