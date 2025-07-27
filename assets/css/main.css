@@ -280,6 +280,30 @@ h6 {
     position: relative;
   }
 
+/* 1) 헤더(또는 로고, 내비(navmenu), 버튼을 감싸는 부모) */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 2) nav 자체를 늘려서(양쪽 스페이스 차지) 내부 메뉴만 중앙으로 */
+#navmenu {
+  flex: 1;                   /* 여기가 남는 공간 싹 가져감 */
+  display: flex;
+  justify-content: center;   /* ul 전체를 중앙에 */
+}
+
+/* 3) ul>li 는 가로 나열만 */
+#navmenu ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.5rem;   /* 필요에 따라 조절 */
+}
+
+
   .navmenu a,
   .navmenu a:focus {
     color: var(--nav-color);
