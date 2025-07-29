@@ -231,22 +231,30 @@ async function updateStats() {
   try {
     const response = await fetch('https://autofic-core-kmw6.onrender.com/log.json');
     const data = await response.json();
-
     // calculate total
     const totalVulns = data.repos.reduce((sum, repo) => sum + (repo.vulnerabilities || 0), 0);
     const totalPRs = data.prs.length;
     const totalRepos = data.repos.length;
-    const approvedPRs = data.prs.filter(pr => pr.approved === true).length;
+    const approvedPRs = data.prs.filter(pr => pr.opened === true).length;
     const avgVulnsPerRepo = (totalVulns / totalRepos) || 0;
     const avgFormatted = avgVulnsPerRepo.toFixed(1);
 
-    // change id to number
-    document.getElementById('mean-vuln').textContent = avgFormatted.toLocaleString() + "개";
-    document.getElementById('vuln-total').textContent = totalVulns.toLocaleString() + "개";
-    document.getElementById('pr-total').textContent = totalPRs.toLocaleString() + "건";
-    document.getElementById('repo-total').textContent = totalRepos.toLocaleString() + "개";
-    document.getElementById('approve-pr').textContent = approvedPRs.toLocaleString() + "개";
 
+    const lang = document.documentElement.lang;
+    if (lang === 'ko') {
+      // change id to number
+      document.getElementById('mean-vuln').textContent = avgFormatted.toLocaleString() + "개";
+      document.getElementById('vuln-total').textContent = totalVulns.toLocaleString() + "개";
+      document.getElementById('pr-total').textContent = totalPRs.toLocaleString() + "건";
+      document.getElementById('repo-total').textContent = totalRepos.toLocaleString() + "개";
+      document.getElementById('approve-pr').textContent = approvedPRs.toLocaleString() + "개";
+    } else {
+      document.getElementById('mean-vuln').textContent = avgFormatted.toLocaleString();
+      document.getElementById('vuln-total').textContent = totalVulns.toLocaleString();
+      document.getElementById('pr-total').textContent = totalPRs.toLocaleString();
+      document.getElementById('repo-total').textContent = totalRepos.toLocaleString();
+      document.getElementById('approve-pr').textContent = approvedPRs.toLocaleString();
+    }
     // below counter log changed
     const counters = document.querySelectorAll('.counter');
     if (counters[0]) counters[0].setAttribute('data-target', totalVulns);
@@ -335,8 +343,14 @@ document.addEventListener("DOMContentLoaded", function() {
   const msDay = 1000 * 60 * 60 * 24;
   const days = Math.floor((today - baseDate) / msDay);
 
-  document.getElementById("autofic-duration").innerHTML =
-    `2025년 5월 1일부터, <br>AutoFiC과 함께한 <span style="color:#4782fa; font-weight:700;">${days}</span>일의 여정`;
+  const lang = document.documentElement.lang;
+    if (lang === 'ko') {
+    document.getElementById("autofic-duration").innerHTML =
+      `2025년 5월 1일부터, <br>AutoFiC과 함께한 <span style="color:#4782fa; font-weight:700;">${days}</span>일의 여정`;
+    } else {
+      document.getElementById("autofic-duration").innerHTML =
+      `Since May 1, 2025,<br>a <span style="color:#4782fa; font-weight:700;">${days}</span> day journey with AutoFiC`
+    }
 });
 
 
@@ -524,7 +538,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // First terminal command
   const demoCommands = [
-    { cmd: "# AutoFiC repository에 대한 clone",   output: [] },
+    { cmd: "# AutoFiC repository clone",   output: [] },
     {
       cmd: "git clone https://github.com/AutoFiC/autofic-core",
       output: [
@@ -537,16 +551,16 @@ document.addEventListener("DOMContentLoaded", () => {
         "델타를 알아내는 중: 100% (1071/1071), 완료."
       ]
     },
-    { cmd: "# Clone한 directory로 이동",   output: [] },
+    { cmd: "# move to clone directory",   output: [] },
     { cmd: "cd autofic-core",   output: [] },
   ];
 
   // Second terminal command
   const actionsCommands = [
-    { cmd: "# Python 가상 환경 생성 및 적용",   output: [] },
+    { cmd: "# Python env create",   output: [] },
     { cmd: "python -m venv .venv",  output: [] },
     { cmd: ".venv\\Scripts\\activate",  output: [] },
-    { cmd: "# Python 필수 패키지 설치",   output: [] },
+    { cmd: "# Python essential package install",   output: [] },
     { cmd: "pip install --upgrade pip",   output: [] },
     { cmd: "pip install -r requirements.txt",
       output: [
@@ -574,7 +588,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Third terminal command
   const setenvfile = [
-    { cmd: "# .env.example 복사",   output: [] },
+    { cmd: "# .env.example copy",   output: [] },
     { cmd: "cp .env.example .env",  output: [] },
     { cmd: "cat .env",  output: [
       "OPENAI_API_KEY=your-key-here",
@@ -674,7 +688,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const envfileBody = modalEl.querySelector("#envfileTerminal");
 
   const demoCommands = [
-    { cmd: "# AutoFiC repository에 대한 clone",   output: [] },
+    { cmd: "# AutoFiC repository clone",   output: [] },
     {
       cmd: "git clone https://github.com/AutoFiC/autofic-core",
       output: [
@@ -687,15 +701,15 @@ document.addEventListener("DOMContentLoaded", () => {
         "델타를 알아내는 중: 100% (1071/1071), 완료."
       ]
     },
-    { cmd: "# Clone한 directory로 이동",   output: [] },
+    { cmd: "# move to clone directory",   output: [] },
     { cmd: "cd autofic-core",   output: [] },
   ];
 
   const actionsCommands = [
-    { cmd: "# Python 가상 환경 생성 및 적용",   output: [] },
+    { cmd: "# Python env create",   output: [] },
     { cmd: "python -m venv .venv",  output: [] },
     { cmd: "source .venv/bin/activate",  output: [] },
-    { cmd: "# Python 필수 패키지 설치",   output: [] },
+    { cmd: "# Python essential package install",   output: [] },
     { cmd: "pip install --upgrade pip",   output: [] },
     { cmd: "pip install -r requirements.txt",
       output: [
@@ -722,7 +736,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   
   const setenvfile = [
-    { cmd: "# .env.example 복사",   output: [] },
+    { cmd: "# .env.example copy",   output: [] },
     { cmd: "cp .env.example .env",  output: [] },
     { cmd: "cat .env",  output: [
       "OPENAI_API_KEY=your-key-here",
@@ -815,7 +829,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const envfileBody = modalEl.querySelector("#envfileTerminal");
 
   const demoCommands = [
-    { cmd: "# Python semgrep 라이브러리 설치",   output: [] },
+    { cmd: "# Python semgrep package install",   output: [] },
     {
       cmd: "pip install semgrep",
       output: [
@@ -830,30 +844,30 @@ document.addEventListener("DOMContentLoaded", () => {
         "Successfully installed attrs-25.3.0, ...",  
       ]
     },
-    { cmd: "# Semgrep 설치 확인",   output: [] },
+    { cmd: "# Semgrep install check",   output: [] },
     { cmd: "semgrep --version",   output: [
       "1.130.0"
     ] },
   ];
 
   const actionsCommands = [
-    { cmd: "# 최신 CodeQL CLI 릴리스 ZIP 파일 다운로드",   output: [] },
+    { cmd: "# CodeQL install",   output: [] },
     { cmd: "Invoke-WebRequest -Uri https://github.com/github/codeql-cli-binaries/releases/latest/download/codeql.zip",   output: [] },
-    { cmd: "# 압축 해제 (PowerShell 5 이상)",   output: [] },
+    { cmd: "# Unzip the file",   output: [] },
     { cmd: "Expand-Archive -Path codeql.zip -DestinationPath $HOME\\codeql",   output: [] },
-    { cmd: "# 환경 변수에 추가",   output: [] },
+    { cmd: "# add PATH",   output: [] },
     { cmd: "$env:Path += ';$HOME\\codeql\\codeql'",   output: [] },
-    { cmd: "# 설치 확인",   output: [] },
+    { cmd: "# Check installed",   output: [] },
     { cmd: "$HOME\\codeql\\codeql\\codeql.exe --version",   output: [] },
 
   ];
   
   const setenvfile = [
-    { cmd: "# npm으로 설치",   output: [] },
+    { cmd: "# npm install",   output: [] },
     { cmd: "npm install -g snyk",  output: [] },
-    { cmd: "# SnykCode 로그인",   output: [] },
+    { cmd: "# SnykCode login",   output: [] },
     { cmd: "snyk auth",   output: [] },
-    { cmd: "# SnykCode 설치 확인",   output: [] },
+    { cmd: "# SnykCode check installed",   output: [] },
     { cmd: "snyk --version",   output: [
       "1.1298.0"
     ] },
@@ -937,7 +951,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const envfileBody = modalEl.querySelector("#envfileTerminal");
 
   const demoCommands = [
-    { cmd: "# Python semgrep 라이브러리 설치",   output: [] },
+    { cmd: "# Python semgrep package install",   output: [] },
     {
       cmd: "pip install semgrep",
       output: [
@@ -952,25 +966,25 @@ document.addEventListener("DOMContentLoaded", () => {
         "Successfully installed attrs-25.3.0, ...",  
       ]
     },
-    { cmd: "# Semgrep 설치 확인",   output: [] },
+    { cmd: "# Semgrep check installed",   output: [] },
     { cmd: "semgrep --version",   output: [
       "1.130.0"
     ] },
   ];
 
   const actionsCommands = [
-    { cmd: "# 최신 릴리스 다운로드",   output: [] },
+    { cmd: "# install CodeQL",   output: [] },
     { cmd: "brew install codeql", output: [] },
-    { cmd: "# 설치 확인", output: [] },
+    { cmd: "# check installed", output: [] },
     { cmd: "codeql --version", output: [] },
   ];
   
   const setenvfile = [
-    { cmd: "# npm으로 설치",   output: [] },
+    { cmd: "# snyk-cli install",   output: [] },
     { cmd: "brew install snyk-cli",  output: [] },
-    { cmd: "# SnykCode 로그인",   output: [] },
+    { cmd: "# SnykCode login",   output: [] },
     { cmd: "snyk auth",   output: [] },
-    { cmd: "# SnykCode 설치 확인",   output: [] },
+    { cmd: "# SnykCode install check",   output: [] },
     { cmd: "snyk --version",   output: [
       "1.1298.0"
     ] },
@@ -1054,7 +1068,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const envfileBody = modalEl.querySelector("#envfileTerminal");
 
   const demoCommands = [
-    { cmd: "# AutoFiC --help 확인하기",   output: [] },
+    { cmd: "# AutoFiC --help check",   output: [] },
     { cmd: "python -m autofic_core.cli --help",
       output: [
         "    ___         __        _______ ______",  
@@ -1080,7 +1094,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   const actionsCommands = [
-    { cmd: "# AutoFiC 탐지/수정/PR 자동화 시작하기",   output: [] },
+    { cmd: "# AutoFiC start",   output: [] },
     { cmd: "python -m autofic_core.cli --repo https://github.com/user/project --save-dir \"C:\\Users\\Username\\download\\AutoFiCResult\" --sast semgrep --llm --patch --pr",
       output: [
         "    ___         __        _______ ______",  
@@ -1203,7 +1217,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const envfileBody = modalEl.querySelector("#envfileTerminal");
 
   const demoCommands = [
-    { cmd: "# AutoFiC --help 확인하기",   output: [] },
+    { cmd: "# AutoFiC --help check",   output: [] },
     { cmd: "python -m autofic_core.cli --help",
       output: [
         "    ___         __        _______ ______",  
@@ -1229,7 +1243,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   const actionsCommands = [
-    { cmd: "# AutoFiC 탐지/수정/PR 자동화 시작하기",   output: [] },
+    { cmd: "# AutoFiC start",   output: [] },
     { cmd: "python -m autofic_core.cli --repo https://github.com/user/project /Users/Username/Desktop/AutoFiCResult --sast semgrep --llm --patch --pr",
       output: [
         "    ___         __        _______ ______",  
